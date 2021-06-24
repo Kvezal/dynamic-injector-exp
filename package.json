@@ -35,5 +35,10 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "typescript": "~4.2.3"
-  }
+  },
+  "description": "`HomeModule` - lazy loading модуль, содержит отображаемый по `/home`  компонент `HomeComponent`, который в свою очередь использует `ModalService` для отображения динамически создаваемой модалки (`ModalComponent`).",
+  "main": "karma.conf.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

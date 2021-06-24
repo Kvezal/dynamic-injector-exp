@@ -1,27 +1,15 @@
-# Modal
+`HomeModule` - lazy loading модуль, содержит отображаемый по `/home` 
+компонент `HomeComponent`, который в свою очередь использует `ModalService`
+для отображения динамически создаваемой модалки (`ModalComponent`).
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
+`ModalService` - сервис для отображения компонента модального окна
 
-## Development server
+`ModalContainerDirective` - директива для указания места в котором будет происходить добавление динамического компонента (модальки)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+`ModalComponent` - компонент, который, в нашем случае, должен динамически добавляться при открытии страницы `/home` и содержит сервис `HomeService`, который в свою очередь провайдится в `HomeModule` и к которому нужно иметь доступ даже если отображение будет происходить непосредственно в рутовом компоненте.
 
-## Code scaffolding
+Обязательное условие: `HomeService` должен подключаться в `HomeModule`, а не в `HomeComponent` или рут (`AppComponent`)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Задача: `ModalService`, должен предоставлять возможность просасывать инжекторы из модулей подобных `HomeModule` (т.е. lazy loading модулей)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Сейчас это реализовано, но возможно есть варианты лучше, было бы здорово иметь возможность как-то получать инжектор содержащий провайдеры Lazy loading модуля при этом, чтобы в динамических компонентах, можно было применять привычную короткую запись для инжектирования сервисов
